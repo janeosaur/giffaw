@@ -9,7 +9,7 @@ $(document).on("ready", function(){
   });
 
 function onSuccess(responseData) {
-  console.log('get request successful');
+  console.log('on load get request successful');
   for (i = 0; i<responseData.data.length; i++) {
     var json = responseData.data[i].images.fixed_height.url;
     $('.gif-gallery').append("<img src= "+ json + ">");
@@ -37,7 +37,7 @@ $('#submit').on('click', function(event) {
   });
 
 function onSearch(response) {
-  console.log('second get request successful');
+  console.log('on search get request successful');
   for (i = 0; i<response.data.length; i++) {
     var json = response.data[i].images.fixed_height.url;
     $('.gif-gallery').append("<img src= "+ json + ">");
@@ -55,12 +55,13 @@ $('#more').on('click', function(event) {
     method: 'get',
     url: 'http://api.giphy.com/v1/gifs/search',
     success: gimmeMore,
-    data: $('form').serialize() + "&offset=" + myOffset + "&limit=" + myLimit,
+    // api_key: 'dc6zaTOxFJmzC',
+    data:$('form').serialize() + "&offset=" + myOffset + "&limit=" + myLimit,
     error: onError
   });
 
 function gimmeMore(response) {
-  console.log('third get request successful');
+  console.log('loan more get request successful');
   console.log(response);
   for (i = 0; i<response.data.length; i++) {
     var json = response.data[i].images.fixed_height.url;
